@@ -21,6 +21,19 @@ class Parcelas {
 	else{
 		plantas.add(unaPlanta)
 	}
-	
 	method alturaMax() = plantas.max({plant => plant.altura()})
+	
+}
+
+
+class ParcelaEco inherits Parcelas{
+	
+	method seAsociaBien(unaPlanta) = not self.tieneComplicaciones() and unaPlanta.esIdealPara(self)
+//	method porcentajeAsociadas() 
+}
+
+class ParcelaIndus inherits Parcelas{
+	
+	method seAsociaBien(unaPlanta) = self.cantidadMaxima() >=2 and unaPlanta.esFuerte()
+//	method porcentajeAsociadas()	
 }
