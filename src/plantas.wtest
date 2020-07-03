@@ -1,0 +1,57 @@
+import plantas.*
+
+describe "test de plantas"{
+	const menta1 = new Menta(anioObtencion = 2005, altura = 1)
+	const menta2 = new Menta(anioObtencion = 2008, altura = 0.3)
+	
+	const soja1 = new Soja(anioObtencion = 2009, altura = 0.6)
+	const soja2 = new Soja(anioObtencion = 2009, altura = 1)
+
+	const quinoa1 = new Quinoa(espacioQuinoa = 0.2, anioObtencion = 2010, altura = 1)
+	const quinoa2 = new Quinoa(espacioQuinoa = 0.4, anioObtencion = 2005, altura = 0.5)
+
+	const sojaTr1 = new SojaTrans(anioObtencion = 2008, altura = 1)
+	const peper1 = new Peperina(anioObtencion = 2010, altura = 0.6)
+
+test "test mentas" {
+	assert.equals(7,menta1.horasDeSolQueTolera())
+	assert.notThat(menta1.esFuerte())
+	assert.that(menta1.daNuevasSemillas())
+	assert.equals(2,menta1.espacioQueOcupa())
+	assert.equals(7,menta2.horasDeSolQueTolera())
+	assert.notThat(menta2.esFuerte())
+	assert.notThat(menta2.daNuevasSemillas())
+	assert.equals(1.3,menta2.espacioQueOcupa())
+}
+test "test soja" {
+	assert.equals(7,soja1.horasDeSolQueTolera())
+	assert.notThat(soja1.esFuerte())
+	assert.notThat(soja1.daNuevasSemillas())
+	assert.equals(0.3,soja1.espacioQueOcupa())
+	assert.equals(12,soja2.horasDeSolQueTolera())
+	assert.that(soja2.esFuerte())
+	assert.that(soja2.daNuevasSemillas())
+	assert.equals(0.5,soja2.espacioQueOcupa())
+}
+test "test quinoa" {
+	assert.equals(10,quinoa1.horasDeSolQueTolera())
+	assert.that(quinoa1.esFuerte())
+	assert.that(quinoa1.daNuevasSemillas())
+	assert.equals(0.2,quinoa1.espacioQueOcupa())
+	assert.equals(7,quinoa2.horasDeSolQueTolera())
+	assert.notThat(quinoa2.esFuerte())
+	assert.that(quinoa2.daNuevasSemillas())
+	assert.equals(0.4,quinoa2.espacioQueOcupa())
+}
+
+test "test sojaTrans/Peperina" {
+	assert.equals(12,sojaTr1.horasDeSolQueTolera())
+	assert.that(sojaTr1.esFuerte())
+	assert.notThat(sojaTr1.daNuevasSemillas())
+	assert.equals(0.5,sojaTr1.espacioQueOcupa())
+	assert.equals(7,peper1.horasDeSolQueTolera())
+	assert.notThat(peper1.esFuerte())
+	assert.that(peper1.daNuevasSemillas())
+	assert.equals(3.2,peper1.espacioQueOcupa())
+}
+}

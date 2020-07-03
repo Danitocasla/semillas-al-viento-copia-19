@@ -1,0 +1,23 @@
+import plantas.*
+import parcelas.*
+
+describe "test parcelas" {
+	const menta1 = new Menta(anioObtencion = 2005, altura = 1)
+	const quinoa1 = new Quinoa(espacioQuinoa = 0.2, anioObtencion = 2010, altura = 1)
+	
+	const parcela1 = new ParcelaEco(ancho = 10, largo = 1, horasDeSolPorDia = 6)
+	const parcela2 = new ParcelaEco(ancho = 5, largo = 4, horasDeSolPorDia = 5)
+	
+test "test Parcelas varias" {
+	parcela1.plantar(quinoa1)
+	parcela2.plantar(menta1)
+	assert.equals(10, parcela1.superficie())
+	assert.equals(5, parcela1.cantidadMaxima())
+	assert.notThat(parcela1.tieneComplicaciones())
+	assert.equals(20, parcela2.superficie())
+	assert.equals(8, parcela2.cantidadMaxima())
+	assert.notThat(parcela2.tieneComplicaciones())
+}
+
+
+}

@@ -17,7 +17,7 @@ class Plantas {
 
 class Menta inherits Plantas{
 	
-	override method condicionParticular() = self.daNuevasSemillas() and self.espacioQueOcupa() > 1.5
+	override method condicionParticular() = self.espacioQueOcupa() > 1.5
 	override method espacioQueOcupa() = altura + 1
 	
 	override method esIdealPara(unaParcela) = unaParcela.superficie() > 6
@@ -26,9 +26,9 @@ class Menta inherits Plantas{
 class Soja inherits Plantas{
 	
 	override method horasDeSolQueTolera() = if(altura<0.3){6} 
-												else if(altura.beetwin(0.3,0.8)){7} 
+												else if(altura.between(0.3,0.8)){7} 
 													else {12}
-	override method condicionParticular() = self.anioObtencion()>2007 and altura.beetwin(0.75,0.9)
+	override method condicionParticular() = self.anioObtencion()>2007 and altura.between(0.75,0.9)
 	override method espacioQueOcupa() = altura * 0.5
 	
 	override method esIdealPara(unaParcela) = self.horasDeSolQueTolera() == unaParcela.horasDeSolPorDia()
@@ -38,8 +38,8 @@ class Quinoa inherits Plantas{
 	var property espacioQuinoa
 	
 	override method espacioQueOcupa() = self.espacioQuinoa()
-	override method horasDeSolQueTolera() = if(self.espacioQueOcupa()>0.3){10} else {super()}
-	override method condicionParticular() = anioObtencion.beetwin(2001,2008)
+	override method horasDeSolQueTolera() = if(self.espacioQueOcupa()<0.3){10} else {super()}
+	override method condicionParticular() = anioObtencion.between(2001,2008)
 
 	override method esIdealPara(unaParcela) = unaParcela.alturaMax() <= 1.5
 }

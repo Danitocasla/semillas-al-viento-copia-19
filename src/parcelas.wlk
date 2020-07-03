@@ -14,7 +14,7 @@ class Parcelas {
 	method cantidadDePlantas() = plantas.size()
 	method plantar(unaPlanta) = 
 	if ( self.cantidadDePlantas() >= self.cantidadMaxima() 
-		or self.horasDeSolPorDia() + 2 > unaPlanta.horasDeSolQueTolera() //corroborar en test
+		or self.horasDeSolPorDia() + 2 > unaPlanta.horasDeSolQueTolera()
 	){
 		self.error("NO_SE_PUEDE_PLANTAR_MAS_NADA")
 	}
@@ -23,17 +23,20 @@ class Parcelas {
 	}
 	method alturaMax() = plantas.max({plant => plant.altura()})
 	
+	method seAsociaBien(unaPlanta) // abstracto
+	method cantidadAsociadas()
+	method porcentajeAsociadas() = self.cantidadAsociadas()/self.cantidadDePlantas()*100
 }
 
 
 class ParcelaEco inherits Parcelas{
-	
-	method seAsociaBien(unaPlanta) = not self.tieneComplicaciones() and unaPlanta.esIdealPara(self)
-//	method porcentajeAsociadas() 
+	override method cantidadAsociadas() = plantas.count({
+		plant => self.seAsociaBien(plant)
+	})	
+	override method seAsociaBien(unaPlanta) = not self.tieneComplicaciones() and unaPlanta.esIdealPara(self) 
 }
 
 class ParcelaIndus inherits Parcelas{
 	
-	method seAsociaBien(unaPlanta) = self.cantidadMaxima() >=2 and unaPlanta.esFuerte()
-//	method porcentajeAsociadas()	
+	override method seAsociaBien(unaPlanta) = self.cantidadMaxima() >=2 and unaPlanta.esFuerte()
 }
